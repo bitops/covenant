@@ -1,7 +1,7 @@
 
 # Covenant
 
-A repo to do some simple testing with [Pact](https://pact.io/).
+A repo to do some simple contract testing with [Pact](https://pact.io/).
 
 ## Overview
 

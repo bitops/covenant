@@ -1,11 +1,10 @@
 require 'webrick'
 require 'json'
-require 'uri'
-require 'net/http'
+require_relative './backend_service'
 
 class Simple < WEBrick::HTTPServlet::AbstractServlet
 
-  MAGIC_PATH = URI.parse("#{ENV['MAGIC_HOST']}/magic")
+  BACKEND_SERVICE = BackendService.new(ENV['MAGIC_HOST'])
 
   def do_GET request, response
     if %w(/ /readiness /liveness /magic /magic-x).member?(request.path_info)
@@ -14,14 +13,12 @@ class Simple < WEBrick::HTTPServlet::AbstractServlet
 
       if request.path_info == "/magic"
         data = {data: {service_b: nil}}
-        service_b_all_data = JSON.parse(Net::HTTP.get_response(MAGIC_PATH).body)
-        endpoint_relevant_data = service_b_all_data["data"]["main"]["answer"]
-        data[:data][:service_b] = endpoint_relevant_data
+        service_b_all_data = BACKEND_SERVICE.magic
+        data[:data][:service_b] = service_b_all_data["data"]["main"]["answer"]
         response.body = data.to_json
       elsif request.path_info == "/magic-x"
         data = {data: {service_b: nil}}
-        service_b_all_data = JSON.parse(Net::HTTP.get_response(MAGIC_PATH).body)
-        data[:data][:service_b] = service_b_all_data
+        data[:data][:service_b] = BACKEND_SERVICE.magic
         response.body = data.to_json
       elsif request.path_info == "/readiness"
         magic_host = ENV['MAGIC_HOST']

@@ -10,10 +10,7 @@
       "description": "some magic",
       "request": {
         "method": "get",
-        "path": "/magic",
-        "headers": {
-          "Accept": "application/json"
-        }
+        "path": "/magic"
       },
       "response": {
         "status": 200,

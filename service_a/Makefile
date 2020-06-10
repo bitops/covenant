@@ -7,10 +7,10 @@ test:
 contracts: clean-contracts generate-contracts copy-contracts
 
 clean-contracts:
-	rm -f consumer/spec/pacts/*
+	rm -f spec/pacts/*
 
 generate-contracts:
 	bundle exec rake
 
 copy-contracts:
-	cp consumer/spec/pacts/* ../service_b/pacts/
+	cp spec/pacts/* ../service_b/pacts/

@@ -23,6 +23,12 @@ class Simple < WEBrick::HTTPServlet::AbstractServlet
         service_b_all_data = JSON.parse(Net::HTTP.get_response(MAGIC_PATH).body)
         data[:data][:service_b] = service_b_all_data
         response.body = data.to_json
+      elsif request.path_info == "/readiness"
+        magic_host = ENV['MAGIC_HOST']
+        if magic_host.nil? || magic_host.empty?
+          response.status = 400
+        end
+        response.body = "{}"
       else
         response.body = "{}"
       end

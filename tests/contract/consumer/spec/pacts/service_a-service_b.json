@@ -1,9 +1,9 @@
 {
   "consumer": {
-    "name": "Foo"
+    "name": "Service A"
   },
   "provider": {
-    "name": "Bar"
+    "name": "Service B"
   },
   "interactions": [
     {
@@ -23,7 +23,7 @@
         "body": {
           "data": {
             "main": {
-              "answer": "42"
+              "answer": "99"
             }
           }
         },

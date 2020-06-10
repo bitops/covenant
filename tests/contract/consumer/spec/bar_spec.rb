@@ -2,9 +2,9 @@ require 'faraday'
 require 'pact/consumer/rspec'
 require_relative 'pact_helper'
 
-describe "BarClient", :pact => true do
+describe "Service B client", :pact => true do
   it "can retrieve a thing"  do
-    bar_service.
+    service_b.
       upon_receiving("a retrieve thing request").with({
       method: :get,
       path: '/magic',
@@ -22,13 +22,9 @@ describe "BarClient", :pact => true do
       }
     })
 
-    # This request would normally be performed some BarClient class,
-    # but just use simple request for the purposes of this test
-    bar_response = Faraday.get(bar_service.mock_service_base_url + "/magic", nil, {'Accept' => 'application/json'})
+    bar_response = Faraday.get(service_b.mock_service_base_url + "/magic", nil, {'Accept' => 'application/json'})
 
-    # This would normally be checking the results of some deserialisation process,
-    # (eg. check for an array of Factory classes )
-    # but just check the response code for the purposes of this test
     expect(bar_response.status).to eql 200
+    expect(bar_response.body).to eql '{"data":{"main":{"answer":"42"}}}'
   end
 end

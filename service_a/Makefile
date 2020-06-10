@@ -10,7 +10,7 @@ clean-contracts:
 	rm -f spec/pacts/*
 
 generate-contracts:
-	bundle exec rake
+	bundle exec rspec spec/magic_spec.rb
 
 copy-contracts:
 	cp spec/pacts/* ../service_b/pacts/

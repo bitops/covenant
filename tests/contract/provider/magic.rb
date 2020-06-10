@@ -1,4 +1,4 @@
-class BarApp
+class Magic
   def call env
     status = 200
     headers = {'Content-Type' => 'application/json'}

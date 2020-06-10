@@ -1,9 +1,9 @@
-require_relative '../bar_app.rb'
+require_relative '../magic.rb'
 
 Pact.configuration.reports_dir = "./provider/reports"
 
-Pact.service_provider "Bar" do
-  app { BarApp.new }
+Pact.service_provider "Magic" do
+  app { Magic.new }
   app_version '1.2.3'
   publish_verification_results !!ENV['PUBLISH_VERIFICATIONS_RESULTS']
 

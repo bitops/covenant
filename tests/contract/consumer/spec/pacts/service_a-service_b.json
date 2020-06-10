@@ -7,7 +7,7 @@
   },
   "interactions": [
     {
-      "description": "a retrieve thing request",
+      "description": "some magic",
       "request": {
         "method": "get",
         "path": "/magic",
@@ -23,7 +23,7 @@
         "body": {
           "data": {
             "main": {
-              "answer": "99"
+              "answer": "42"
             }
           }
         },

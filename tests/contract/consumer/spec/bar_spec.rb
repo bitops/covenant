@@ -3,9 +3,9 @@ require 'pact/consumer/rspec'
 require_relative 'pact_helper'
 
 describe "Service B client", :pact => true do
-  it "can retrieve a thing"  do
+  it "gets some magic"  do
     service_b.
-      upon_receiving("a retrieve thing request").with({
+      upon_receiving("some magic").with({
       method: :get,
       path: '/magic',
       headers: {'Accept' => 'application/json'}
@@ -27,4 +27,5 @@ describe "Service B client", :pact => true do
     expect(bar_response.status).to eql 200
     expect(bar_response.body).to eql '{"data":{"main":{"answer":"42"}}}'
   end
+
 end

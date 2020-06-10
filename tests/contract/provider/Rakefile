@@ -19,8 +19,8 @@ PactBroker::Client::PublicationTask.new(:remote) do | task |
   task.pattern = "consumer/spec/pacts/*.json"
 end
 
-Pact::VerificationTask.new(:foobar) do | pact |
-  pact.uri './consumer/spec/pacts/service_a-service_b.json', pact_helper: './provider/spec/pact_helper.rb'
+Pact::VerificationTask.new(:magic) do | pact |
+  pact.uri './consumer/spec/pacts/service_a-service_b.json', pact_helper: './provider/spec/pact_helper_magic.rb'
 end
 
 Pact::VerificationTask.new(:foobar_using_local_broker) do | pact |

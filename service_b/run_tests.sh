@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # start docker
-docker run -d -p 3000:8080 "$(docker build . | grep 'Successfully built' | awk '{print $3}')"
+docker run -d -p 3000:8080 "$(docker build . | grep 'Successfully built' | awk '{print $3}')" > /dev/null
 PID="$(docker ps | grep basic_server | awk '{print $1}')"
 
 # run tests
@@ -13,7 +13,7 @@ bundle exec pact-provider-verifier pacts/service_a-service_b.json --provider-bas
 CONTRACT_TEST_PASS="$?"
 
 # shut down test resources
-docker stop "$PID"
+docker stop "$PID" > /dev/null
 
 # signal tests pass or fail for CI use
 if [ "$UNIT_TEST_PASS" == "0" ] && [ "$CONTRACT_TEST_PASS" == "0" ]; then

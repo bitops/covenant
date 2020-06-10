@@ -2,13 +2,4 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
-
-gem 'pact', '~> 1.50'
-gem "pact_broker-client"
 gem 'pact-provider-verifier'
-gem "rspec", "~> 3.6"
-gem "faraday", "~> 0.12"
-gem "pry-byebug", "~> 3.4"
-gem 'rake'

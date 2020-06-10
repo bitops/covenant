@@ -9,7 +9,16 @@ class Simple < WEBrick::HTTPServlet::AbstractServlet
       response['Content-Type'] = 'application/json'
 
       if request.path_info == "/magic"
-        data = { data: { main: { answer: "42" } } }
+        data = {
+          data: {
+            main: {
+              answer: "42"
+            },
+            extended: {
+              extra: "88"
+            },
+          }
+        }
         response.body = data.to_json
       else
         response.body = "{}"

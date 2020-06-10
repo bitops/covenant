@@ -30,7 +30,7 @@ describe "Basic Pod-ready containerized web process" do
         res = Net::HTTP.get_response(MAGIC_PATH)
         assert_equal 200, res.code.to_i
         assert_equal "application/json", res.header["Content-Type"]
-        assert_equal '{"data":{"main":{"answer":"42"}}}', res.body
+        assert_equal '{"data":{"main":{"answer":"42"},"extended":{"extra":"88"}}}', res.body
       end
     end
   end

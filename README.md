@@ -19,4 +19,4 @@ If you look in `service_b`, you can see the server code for the backend in `serv
 
 ## Notes
 
-Because these are simply Ruby apps which are not Rack-based, all the contracts are simple. It is easy to generate the contracts on the consumer side using existing Ruby pact libraries. For provider side verification, since this was also a non-Rack Ruby application, we are using the standalone [pact-provider-verifier](https://github.com/pact-foundation/pact-provider-verifier) utility.
+Because these are plain Ruby apps which are not Rack-based all the contracts are simple. It is easy to generate the contracts on the consumer side using existing Ruby pact libraries. For provider side verification, since this is also a non-Rack Ruby application, we are using the standalone [pact-provider-verifier](https://github.com/pact-foundation/pact-provider-verifier) utility.

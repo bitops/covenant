@@ -4,7 +4,10 @@ all: test contracts
 test:
 	./run_tests.sh
 
-contracts: generate-contracts copy-contracts
+contracts: clean-contracts generate-contracts copy-contracts
+
+clean-contracts:
+	rm -f consumer/spec/pacts/*
 
 generate-contracts:
 	bundle exec rake

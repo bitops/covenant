@@ -1,0 +1,43 @@
+{
+  "consumer": {
+    "name": "Service A"
+  },
+  "provider": {
+    "name": "Service B"
+  },
+  "interactions": [
+    {
+      "description": "some magic",
+      "request": {
+        "method": "get",
+        "path": "/magic",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "data": {
+            "main": {
+              "answer": "42"
+            }
+          }
+        },
+        "matchingRules": {
+          "$.body.data.main.answer": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

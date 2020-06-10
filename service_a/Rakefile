@@ -1,0 +1,3 @@
+load 'consumer/Rakefile'
+
+task :default => 'spec'

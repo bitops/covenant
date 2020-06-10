@@ -20,7 +20,7 @@ PactBroker::Client::PublicationTask.new(:remote) do | task |
 end
 
 Pact::VerificationTask.new(:foobar) do | pact |
-  pact.uri './consumer/spec/pacts/foo-bar.json', pact_helper: './provider/spec/pact_helper.rb'
+  pact.uri './consumer/spec/pacts/service_a-service_b.json', pact_helper: './provider/spec/pact_helper.rb'
 end
 
 Pact::VerificationTask.new(:foobar_using_local_broker) do | pact |

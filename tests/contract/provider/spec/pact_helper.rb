@@ -8,6 +8,6 @@ Pact.service_provider "Bar" do
   publish_verification_results !!ENV['PUBLISH_VERIFICATIONS_RESULTS']
 
   honours_pact_with 'Foo' do
-    pact_uri './consumer/spec/support/foo-bar.json'
+    pact_uri './consumer/spec/support/service-a_service_b.json'
   end
 end

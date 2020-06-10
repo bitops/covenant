@@ -1,6 +1,6 @@
 require 'faraday'
 require 'pact/consumer/rspec'
-require_relative '../backend_service'
+require_relative '../backend_client'
 
 Pact.configuration.pact_dir = File.dirname(__FILE__) + "/pacts"
 
@@ -32,7 +32,7 @@ describe "Service B client", :pact => true do
       }
     })
 
-    bar_response = BackendService.new(service_b.mock_service_base_url).magic
+    bar_response = BackendClient.new(service_b.mock_service_base_url).magic
     expect(bar_response["data"]["main"]["answer"]).to eql "42"
   end
 

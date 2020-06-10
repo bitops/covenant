@@ -1,10 +1,12 @@
 require 'webrick'
 require 'json'
-require_relative './backend_service'
+require_relative './backend_client'
 
 class Simple < WEBrick::HTTPServlet::AbstractServlet
 
-  BACKEND_SERVICE = BackendService.new(ENV['MAGIC_HOST'])
+  def backend_client
+    BackendClient.new(ENV['MAGIC_HOST'])
+  end
 
   def do_GET request, response
     if %w(/ /readiness /liveness /magic /magic-x).member?(request.path_info)
@@ -13,12 +15,12 @@ class Simple < WEBrick::HTTPServlet::AbstractServlet
 
       if request.path_info == "/magic"
         data = {data: {service_b: nil}}
-        service_b_all_data = BACKEND_SERVICE.magic
+        service_b_all_data = backend_client.magic
         data[:data][:service_b] = service_b_all_data["data"]["main"]["answer"]
         response.body = data.to_json
       elsif request.path_info == "/magic-x"
         data = {data: {service_b: nil}}
-        data[:data][:service_b] = BACKEND_SERVICE.magic
+        data[:data][:service_b] = backend_client.magic
         response.body = data.to_json
       elsif request.path_info == "/readiness"
         magic_host = ENV['MAGIC_HOST']
@@ -33,6 +35,7 @@ class Simple < WEBrick::HTTPServlet::AbstractServlet
       response.status = 404
     end
   end
+
 end
 
 server = WEBrick::HTTPServer.new :Port => 8080

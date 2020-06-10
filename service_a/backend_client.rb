@@ -2,7 +2,7 @@ require 'json'
 require 'uri'
 require 'net/http'
 
-class BackendService
+class BackendClient
   def initialize(host)
     @host = host
   end

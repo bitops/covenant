@@ -6,10 +6,18 @@ PID="$(docker ps | grep basic_server | awk '{print $1}')"
 
 # run tests
 ruby basic_server_test.rb
-TEST_PASS="$?"
+UNIT_TEST_PASS="$?"
+
+# run contract tests
+bundle exec pact-provider-verifier pacts/service_a-service_b.json --provider-base-url 'http://localhost:3000'
+CONTRACT_TEST_PASS="$?"
 
 # shut down test resources
 docker stop "$PID"
 
 # signal tests pass or fail for CI use
-exit $TEST_PASS
+if [ "$UNIT_TEST_PASS" == "0" ] && [ "$CONTRACT_TEST_PASS" == "0" ]; then
+  exit 0
+else
+  exit 1
+fi

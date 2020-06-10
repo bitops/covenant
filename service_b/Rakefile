@@ -1,3 +1,0 @@
-load 'provider/Rakefile'
-
-task :default => 'pact:verify:magic'

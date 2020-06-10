@@ -1,6 +1,0 @@
-require 'pact/tasks/verification_task'
-require 'pact_broker/client/tasks'
-
-Pact::VerificationTask.new(:magic) do | pact |
-  pact.uri './provider/pacts/service_a-service_b.json', pact_helper: './provider/spec/pact_helper_magic.rb'
-end

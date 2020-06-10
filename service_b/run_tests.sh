@@ -5,11 +5,11 @@ docker run -d -p 3000:8080 "$(docker build . | grep 'Successfully built' | awk '
 PID="$(docker ps | grep basic_server | awk '{print $1}')"
 
 # run tests
-ruby basic_server_test.rb
+ruby spec/basic_server_test.rb
 UNIT_TEST_PASS="$?"
 
 # run contract tests
-bundle exec pact-provider-verifier pacts/service_a-service_b.json --provider-base-url 'http://localhost:3000'
+bundle exec pact-provider-verifier spec/pacts/service_a-service_b.json --provider-base-url 'http://localhost:3000'
 CONTRACT_TEST_PASS="$?"
 
 # shut down test resources

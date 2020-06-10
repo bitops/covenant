@@ -13,4 +13,4 @@ generate-contracts:
 	bundle exec rspec spec/magic_spec.rb
 
 copy-contracts:
-	cp spec/pacts/* ../service_b/pacts/
+	cp spec/pacts/* ../service_b/spec/pacts/

@@ -80,7 +80,7 @@ GEM
     thor (0.20.3)
     tins (1.25.0)
       sync
-    webrick (1.6.0)
+    webrick (1.8.1)
 
 PLATFORMS
   ruby
